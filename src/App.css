@@ -24,6 +24,10 @@
   color: white;
 }
 
+.App-header strong::after {
+  padding: 2em;
+}
+
 .App-link {
   color: #61dafb;
 }
