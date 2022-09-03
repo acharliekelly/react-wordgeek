@@ -1,0 +1,16 @@
+[
+	{ "player": "player5", "word": "woolly", "score": 6, "timestamp": "2022-09-03T18:01:43.606Z" },
+	{ "player": "player1", "word": "really", "score": 6, "timestamp": "2022-09-03T18:02:43.606Z" },
+	{ "player": "player6", "word": "adder", "score": 5, "timestamp": "2022-09-03T18:01:43.505Z" },
+	{ "player": "player4", "word": "dally", "score": 5, "timestamp": "2022-09-03T18:03:43.505Z" },
+	{ "player": "player2", "word": "word", "score": 4, "timestamp": "2022-09-03T18:01:43.404Z" },
+	{ "player": "player3", "word": "tale", "score": 4, "timestamp": "2022-09-03T18:02:43.404Z" }, 
+	{ "player": "player2", "word": "long", "score": 4, "timestamp": "2022-09-03T18:03:43.404Z" },
+	{ "player": "player5", "word": "wall", "score": 4, "timestamp": "2022-09-03T18:04:43.404Z" },
+	{ "player": "player6", "word": "real", "score": 4, "timestamp": "2022-09-03T18:05:43.404Z" },
+	{ "player": "player1", "word": "ally", "score": 4, "timestamp": "2022-09-03T18:06:43.404Z" },
+	{ "player": "player2", "word": "gall", "score": 4, "timestamp": "2022-09-03T18:07:43.404Z" },
+	{ "player": "player3", "word": "gels", "score": 4, "timestamp": "2022-09-03T18:08:43.404Z" },
+	{ "player": "player1", "word": "all", "score": 3, "timestamp": "2022-09-03T18:03:43.303Z" }
+]
+
