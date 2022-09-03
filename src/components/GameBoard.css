@@ -1,0 +1,20 @@
+
+.box {
+  border: 1px solid #444;
+  padding: 1em 2em;
+}
+
+.label {
+  text-align: right;
+}
+.label::after {
+  padding: 1em;
+}
+
+.wordText {
+  font-weight: bold;
+}
+
+.invalidWord {
+  color: red;
+}
