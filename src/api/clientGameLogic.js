@@ -1,6 +1,6 @@
 import * as topScores from './topscores.json';
 
-const DEFAULT_STARTING_WORD = "areallylongword";
+const DEFAULT_STARTING_WORD = "areallylongwords";
 
 let localWordFrequencyMap = {};
 

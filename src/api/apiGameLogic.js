@@ -1,5 +1,5 @@
 
-const apiBaseUrl = '';
+const apiBaseUrl = 'http://localhost:8080/';
 
 let currentGame = {
   id: 0,
@@ -19,7 +19,7 @@ export const initGame = () => {
  */
 export const getStartingWord = () => {
   // TODO: create API
-  const url = `${apiBaseUrl}/game/${currentGame.id}/startword`;
+  const url = `${apiBaseUrl}/games/${currentGame.id}/startword`;
   return fetch(url).then(resp => resp.json());
 }
 
@@ -32,13 +32,15 @@ export const validateWord = testWord => {
 }
 
 export const submitWord = (playerName, word) => {
-  const url = `${apiBaseUrl}/game/${currentGame.id}/player/${playerName}/word/${word}`;
-  return fetch(url).then(resp => resp.json());
+  // TODO: create post request
+  //  send score to API
+  const url = `${apiBaseUrl}/scores/`;
+  
 }
 
 
 export const getTopScores = () => {
   // TODO: retrieve from API
-  const url = `${apiBaseUrl}/game/${currentGame.id}/leaderboard`;
+  const url = `${apiBaseUrl}/scores`
   return fetch(url).then(resp => resp.json());
 }

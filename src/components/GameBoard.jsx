@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
-import { Container, Table } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
+import TileBoard from './TileBoard';
+
+import './GameBoard.css';
 
 const GameGoard = ({ startingWord, validateWord }) => {
   const [ acceptedWords, setAcceptedWords ] = useState([]);
@@ -15,7 +18,7 @@ const GameGoard = ({ startingWord, validateWord }) => {
   }
 
   const handleEnter = event => {
-    if (!invalidWord) {
+    if (currentWord && !invalidWord) {
       setAcceptedWords([...acceptedWords, currentWord]);
       event.target.value = '';
     }
@@ -29,38 +32,31 @@ const GameGoard = ({ startingWord, validateWord }) => {
   return (
     <Container className="GameBoard">
       <Container className="startingWordBox box">
-        <span className="label">Starting Word:</span>
-        <span className="wordText">{startingWord}</span>
+        <TileBoard seedString={startingWord} />
       </Container>
       <Container className="wordEntryBox box">
-        <span className="label">Word:</span>
+        <span className="label">Word:{' '}</span>
           <input type="text" id="wordInput" 
                 onChange={handleChange} 
                 onBlur={handleEnter} 
                 onKeyDown={handleKeyPress} />
             {invalidWord && (
-                <div className="invalidWord">{currentWord} is not valid!</div>
+                <div className="invalidWord"><em>{currentWord}</em> is not valid!</div>
               )}
       </Container>
 
       <Container className="acceptedWordsBox box">
         <h2>Accepted Words</h2>
-        <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>Word</th>
-                <th>Score</th>
-              </tr>
-            </thead>
-            <tbody>
-              {acceptedWords.map(word => (
-              <tr>
-                <td>{word}</td>
-                <td>{word.length}</td>
-              </tr>
-              ))}
-            </tbody>
-          </Table>
+        <Row>
+          <Col sm="6" xs="12">Word</Col>
+          <Col sm="6" xs="12">Score</Col>
+        </Row>
+        {acceptedWords.map(word => (
+          <Row>
+            <Col>{word}</Col>
+            <Col>{word.length}</Col>
+          </Row>
+          ))}
       </Container>
       
     </Container>

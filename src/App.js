@@ -1,7 +1,7 @@
-import logo from './ck-splotch.svg';
+// import logo from './ck-splotch.svg';
 import './App.css';
 import GameBoard from './components/GameBoard';
-import LeaderBoard from './components/LeaderBoard';
+// import LeaderBoard from './components/LeaderBoard';
 import { validateWord, getStartingWord, getTopScores } from './api/clientGameLogic';
 
 
@@ -10,16 +10,16 @@ function App() {
   const startingWord = getStartingWord();
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1><strong>WordGeek</strong>{' '}Word Game</h1>
-      </header>
+      </header> */}
 
       <GameBoard 
         startingWord={startingWord} 
         validateWord={validateWord} /> 
 
-      <LeaderBoard topScores={topScores} />
+      {/* <LeaderBoard topScores={topScores} /> */}
 
     </div>
   );
