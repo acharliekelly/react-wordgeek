@@ -1,23 +1,18 @@
-// import logo from './ck-splotch.svg';
 import './App.css';
 import GameBoard from './components/GameBoard';
 // import LeaderBoard from './components/LeaderBoard';
-import { validateWord, getStartingWord, getTopScores } from './api/clientGameLogic';
-
+import { getStartingWord } from './api/clientGameLogic';
 
 function App() {
-  const topScores = getTopScores();
+  // const topScores = getTopScores();
   const startingWord = getStartingWord();
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+      <header>
         <h1><strong>WordGeek</strong>{' '}Word Game</h1>
-      </header> */}
+      </header>
 
-      <GameBoard 
-        startingWord={startingWord} 
-        validateWord={validateWord} /> 
+      <GameBoard startingWord={startingWord} /> 
 
       {/* <LeaderBoard topScores={topScores} /> */}
 
