@@ -1,0 +1,7 @@
+
+.board {
+  padding: 1em;
+  max-width: 500px;
+  border: inset thin;
+  margin-bottom: 0.5em;
+}
