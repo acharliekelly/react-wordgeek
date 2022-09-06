@@ -1,13 +1,43 @@
-.tile {
+
+
+
+
+span.badge {
+  padding: auto;
+  margin: 0.2em;
+  font-size: 2em;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  vertical-align: middle;
+}
+
+div.tile {
   padding: 1em;
   margin: 1em;
   border: thin black solid;
   border-radius: 10%;
-  background-color: white;
-  color: black;
+
   font-size: 18px;
   font-weight: bold;
   text-transform: uppercase;
   display: inline-block;
+}
+
+.init {
   cursor: pointer;
+  border: thin outset black;
+}
+div.init {
+  background-color: black;
+  color: white;
+}
+
+.clicked {
+  cursor: default;
+  border: thin inset;
+}
+div.clicked {
+  background-color: gray;
+  color: black;
 }
