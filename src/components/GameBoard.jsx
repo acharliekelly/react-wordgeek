@@ -106,9 +106,6 @@ const GameGoard = ({ startingWord, playerName, submitWord, resetFn }) => {
     }
   }
 
-
-  
-
   return (
     <Container className="GameBoard">
       <h3 className="playerName">{playerName}</h3>
