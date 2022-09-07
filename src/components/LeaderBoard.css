@@ -1,6 +1,15 @@
 .leaderBoard {
+  margin-top: 4em;
   border-radius: 5%;
-  background-color: blanchedalmond;
+  background-color: white;
   color: black;
   font-size: medium;
+}
+
+.player {
+  text-transform: capitalize;
+}
+
+.word {
+  text-transform: uppercase;
 }

@@ -10,18 +10,21 @@ const LeaderBoard = ({ scores }) => {
       <h2>Leader Board</h2>
       <Table striped bordered hover>
         <thead>
-          <th>#</th>
-          <th>Player</th>
-          <th>Word</th>
-          <th>Score</th>
+          <tr>
+            <th>#</th>
+            <th>Player</th>
+            <th>Word</th>
+            <th>Score</th>
+          </tr>
+          
         </thead>
         <tbody>
           {scores.map((entry, index) => (
             <tr key={'t' + entry.timestamp}>
-              <td>{index}</td>
-              <td>{entry.player}</td>
-              <td>{entry.word}</td>
-              <td>{entry.score}</td>
+              <td>{index+1}</td>
+              <td className="player">{entry.player}</td>
+              <td className="word">{entry.word}</td>
+              <td className="score">{entry.score}</td>
             </tr>
           ))}
         </tbody>
