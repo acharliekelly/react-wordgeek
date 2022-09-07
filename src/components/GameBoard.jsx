@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Button, Alert } from 'react-bootstrap';
+import { Container, Button, Alert } from 'react-bootstrap';
 
 import { validateWord, shuffleArray, initTilesArray } from '../api/clientGameLogic';
+
 
 import TileBoard from './TileBoard';
 
 import './GameBoard.css';
 
-const GameGoard = ({ startingWord }) => {
+const GameGoard = ({ startingWord, playerName, submitWord, resetFn }) => {
   // TILE: { letter: 'a', clicked: false }
   const [ tileArray, setTileArray ] = useState([]);
-  const [ acceptedWords, setAcceptedWords ] = useState([]);
   const [ currentEntry, setCurrentEntry ] = useState('');
   const [ invalidWord, setInvalidWord ] = useState('');
-  const [ accept, setAccept ] = useState('');
-  // const [ playerName, setPlayerName ] = useState('');
 
   useEffect(() => {
     const arr = initTilesArray(startingWord);
@@ -33,9 +31,8 @@ const GameGoard = ({ startingWord }) => {
   const handleReset = () => {
     setCurrentEntry('');
     resetTiles();
-    setInvalidWord(false);
-    setAccept('');
-    setAcceptedWords([]);
+    setInvalidWord('');
+    resetFn();
   }
 
   const handleWordInputChange = event => {
@@ -48,8 +45,10 @@ const GameGoard = ({ startingWord }) => {
       setInvalidWord(validateWord(currentEntry) ? '' : currentEntry);
       
       if (currentEntry && !invalidWord) {
-        setAcceptedWords([...acceptedWords, currentEntry]);
-        setAccept(currentEntry);
+        if (submitWord(currentEntry)) {
+          // TODO: update
+          console.log('ACCEPTED')
+        }
         setCurrentEntry('');
         resetTiles();
       }
@@ -76,11 +75,9 @@ const GameGoard = ({ startingWord }) => {
     const tile = newArray[index];
     if (tile.clicked) {
       // add letter 
-      console.log(tile.letter + ' clicked!')
       tmpEntry = currentEntry + tile.letter;
     } else {
       // remove letter
-      console.log(tile.letter + ' unclicked!')
       tmpEntry = currentEntry.replace(tile.letter, '');
     }
 
@@ -107,8 +104,6 @@ const GameGoard = ({ startingWord }) => {
       setInvalidWord(validateWord(currentEntry) ? '' : currentEntry);
     
     }
-    if (accept)
-      setAccept('');
   }
 
 
@@ -116,61 +111,24 @@ const GameGoard = ({ startingWord }) => {
 
   return (
     <Container className="GameBoard">
-      
-      <Row>
-        <Col md={8} sm={12}>
-          {/* <Container id="playerNameBox" className="box">
-            <label htmlFor="playerInput">Player Name:</label>{' '}
-            <input type="text" id="playerInput" value={playerName} />
-          </Container> */}
-      
-          <Container className="wordEntryBox box">
-            <label htmlFor="wordInput">Word:{' '}</label>
-            <input type="text" id="wordInput" 
-                  value={currentEntry}
-                  onChange={handleWordInputChange} 
-                  onKeyDown={handleKeyPress} />
-            <Button id="checkWord" variant="primary" onClick={handleEnter}>Enter</Button>
-              {invalidWord && (
-                  <Alert variant="warning" className="invalid"><em>{invalidWord}</em> is not valid!</Alert>
-                )}
-          </Container>
+      <h3 className="playerName">{playerName}</h3>
+      <Container id="wordEntryBox" className="box">
+        <label htmlFor="wordInput">Word:{' '}</label>
+        <input type="text" id="wordInput" 
+              value={currentEntry}
+              onChange={handleWordInputChange} 
+              onKeyDown={handleKeyPress} />
+        <Button id="checkWord" variant="primary" onClick={handleEnter}>Enter</Button>
+          {invalidWord && (
+              <Alert variant="warning" className="invalid"><em>{invalidWord}</em> is not valid!</Alert>
+            )}
+      </Container>
 
-          <Container className="startingWordBox box">
-            <TileBoard seedArray={tileArray} tileClick={handleTileClick} />
-            <Button className="shuffleBtn" variant="dark" onClick={handleShuffle}>Shuffle</Button>
-            <Button className="resetBtn" variant="warning" onClick={handleReset}>Reset</Button>
-          </Container>
-         
-        </Col>
-        <Col md={4} sm={12} className="acceptedWordsBox box">
-          {acceptedWords.length>0 && (
-            
-          <Container>
-            <Row>
-              <Col md={12}>
-                <h2>Accepted Words</h2>
-              </Col>
-            </Row>
-            <Row>
-              <Col sm={6}><strong>Word</strong></Col>
-              <Col sm={6}><strong>Score</strong></Col>
-            </Row>
-            {acceptedWords.map((word, idx) => (
-              <Row key={word + idx}>
-                <Col sm={6}>{word}</Col>
-                <Col sm={6}>{word.length}</Col>
-              </Row>
-              ))}
-          </Container>
-          )}
-        
-        </Col>
-      </Row>
-     
-
-
-      
+      <Container id="tileBox" className="box">
+        <TileBoard seedArray={tileArray} tileClick={handleTileClick} />
+        <Button className="shuffleBtn" variant="dark" onClick={handleShuffle}>Shuffle</Button>
+        <Button className="resetBtn" variant="warning" onClick={handleReset}>Reset</Button>
+      </Container>
      
       
     </Container>

@@ -1,12 +1,17 @@
 
 .GameBoard {
   background-color: #ccc;
+  padding-top: 1em;
+}
+
+.playerName {
+  text-transform: capitalize;
+  font-size: large;
 }
 
 .box {
   /* border: 1px solid #444; */
   padding: 1em 2em;
-  background-color: white;
 }
 
 .box input {
