@@ -1,49 +1,50 @@
 import { validateWord } from './clientGameLogic';
 
 
-const scoreBoard = [];
 
-export const submitWord = (playerName, word) => {
+export const submitWord = (playerName, word, scoresList) => {
   if (validateWord(word)) {
-    if (!containsWord(word)) {
-      scoreBoard.push({ player: playerName, word, score: word.length, timestamp: new Date() });
-      scoreBoard.sort(scoreCompareFn);
-    }
+    const entry = { player: playerName, word, score: word.length, timestamp: new Date() };
+    return submitScore(entry, scoresList);
   }
+  return null;
 }
 
 // already validated
-export const submitScore = (playerName, word, score, timestamp) => {
-  if (!containsWord(word)) {
-    scoreBoard.push({ player: playerName, word, score, timestamp });
-    scoreBoard.sort(scoreCompareFn);
+export const submitScore = (entry, scoresList) => {
+  console.log(`submitted score: word=${entry.word}, checking ${scoresList.length} entries`);
+  if (!containsWord(entry.word, scoresList)) {
+    const tmp = [...scoresList, entry];
+    tmp.sort(scoreCompareFn);
+    return tmp;
   }
+  return null;
 }
 
-export const findPosition = (playerName, word) => {
-  let idx = scoreBoard.indexOf(word);
-  if (idx < 0 && scoreBoard[idx].player === playerName) {
-    return idx;
+export const sortBoard = (scoresList) => {
+  return scoresList.sort(scoreCompareFn);
+}
+
+
+export const getTopScores = (scoresList, listSize) => {
+  if (scoresList.length === 0)
+    return [];
+  else if (scoresList.length < listSize) {
+    return scoresList;
   } else {
-    return -1;
+    return scoresList.slice(0, listSize-1);
   }
 }
 
-export const sortBoard = () => {
-  scoreBoard.sort(scoreCompareFn);
-}
 
-export const getScores = () => {
-  return scoreBoard;
-}
-
-export const getTopScores = listSize => {
-  return scoreBoard.slice(0, listSize-1);
-}
-
-
-const containsWord = testWord => {
-  return scoreBoard.any(entry => entry.word === testWord );
+const containsWord = (testWord, scoresList) => {
+  if (!scoresList || scoresList.length === 0) {
+    return false;
+  } else if (scoresList.length === 1) {
+    return (scoresList[0].word === testWord);
+  } else {
+    return scoresList.includes(entry => entry.word === testWord);
+  }
 }
 
 
